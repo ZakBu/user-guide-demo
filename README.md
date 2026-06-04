@@ -41,6 +41,13 @@ git clone https://github.com/ZakBu/user-guide-demo.git
 cd user-guide-demo
 ```
 
+На Windows в PowerShell это выглядит так же:
+
+```powershell
+git clone https://github.com/ZakBu/user-guide-demo.git
+cd user-guide-demo
+```
+
 Если вы скачали проект ZIP-архивом:
 
 1. Распакуйте архив.
@@ -52,6 +59,28 @@ cd путь/до/папки/user-guide-demo
 ```
 
 На macOS можно упростить: напишите `cd ` с пробелом, затем перетащите папку проекта в окно терминала и нажмите Enter.
+
+На Windows проще всего так:
+
+1. Распакуйте ZIP-архив, например в `Downloads`.
+2. Откройте папку проекта в Проводнике.
+3. Кликните правой кнопкой мыши по пустому месту в папке.
+4. Выберите `Открыть в терминале` или `Open in Terminal`.
+5. Выполните команды запуска из следующего раздела.
+
+Если нужно перейти в папку вручную через PowerShell:
+
+```powershell
+cd "$env:USERPROFILE\Downloads\user-guide-demo"
+```
+
+Если папка называется иначе, замените `user-guide-demo` на фактическое имя папки.
+
+Для старого Windows CMD:
+
+```cmd
+cd %USERPROFILE%\Downloads\user-guide-demo
+```
 
 ## Первый запуск
 
@@ -66,6 +95,24 @@ npm install
 Запустите локальный сервер:
 
 ```bash
+npm start
+```
+
+Полный пример для Windows PowerShell:
+
+```powershell
+cd "$env:USERPROFILE\Downloads\user-guide-demo"
+node -v
+npm install
+npm start
+```
+
+Полный пример для Windows CMD:
+
+```cmd
+cd %USERPROFILE%\Downloads\user-guide-demo
+node -v
+npm install
 npm start
 ```
 
@@ -244,6 +291,47 @@ Node.js не установлен или терминал не видит его
 ```bash
 PORT=3000 npm start
 ```
+
+На Windows PowerShell:
+
+```powershell
+$env:PORT=3000; npm start
+```
+
+На Windows CMD:
+
+```cmd
+set PORT=3000 && npm start
+```
+
+После запуска на другом порту откройте `http://localhost:3000/home`.
+
+### `npm : File cannot be loaded because running scripts is disabled`
+
+Такое иногда появляется в Windows PowerShell из-за политики выполнения скриптов.
+
+Самый простой вариант: запустите проект через CMD:
+
+```cmd
+npm install
+npm start
+```
+
+Или разрешите выполнение скриптов для текущего пользователя в PowerShell:
+
+```powershell
+Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+```
+
+После этого закройте PowerShell, откройте его заново и повторите:
+
+```powershell
+npm start
+```
+
+### Windows Defender или браузер спрашивает разрешение сети
+
+При первом запуске Node.js Windows может спросить, разрешить ли доступ к сети. Для локального запуска достаточно разрешить доступ в частных сетях. Сайт работает на вашем компьютере по адресу `localhost`.
 
 ### Страница открывается, но картинки пропали
 
