@@ -1,0 +1,14 @@
+{
+  "name": "user-guide-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Демо-сайт руководства пользователя",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "check": "node scripts/check.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
